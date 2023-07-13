@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img{
+            width: 300px;
+            height: 300px;
+        }
+        .collection
+        {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        p{
+            color: red;
+        }
+        .p
+        {
+            font-weight: bolder;
+            font-size: xx-large;
+        }
+        h1{
+            text-align: center;
+            align-items: center;
+        }
+        p
+        {
+            font-weight: bolder;
+        }
+        button{
+            margin-bottom: 100px;
+        }
+    </style>
+</head>
+<body>
+    {{>header}}
+    <h1>welcome to menue</h1><br>
+    <div id="all">
+
+    </div>
+
+    <script>
+        url="http://localhost/destination";
+        let da=document.getElementById('all');
+   function getdata()
+{
+    console.log("api data");
+    fetch(url).then((response)=>
+    {
+        return response.json();
+    }).then((data)=>
+    { 
+        console.log(data); 
+        shwoData(data);
+    })
+}
+
+const shwoData=(data)=>
+{
+    let dHtml="";
+    data.forEach(function(element,index)
+    {
+        dHtml+=`<div class='collection'>
+            <img src='${element.imageUrl}'>
+             <p class='pa'>place:${element.name}
+            <p>days:${element.days}
+             <p>nights:${element.nights}
+             <p class='p'>price:${element.price}/- perhead</p> 
+            <form action="/book" method="POST">
+            <button type="submit" name="id" value='${element._id}'>book now</button>
+            </form>
+            </div>`;
+            console.log(element._id);
+             da.innerHTML=dHtml;
+    })
+   // da.innerHTML=dHtml;
+}
+getdata();
+    </script>
+</body>
+</html>

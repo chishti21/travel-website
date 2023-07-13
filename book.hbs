@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>confirm your booking right now</h1>
+    <h1>{{demo.name}}</h1>
+    <form action="/order" method="POST">
+    <input type="text" name="place" value="{{demo.name}}">
+    <input type="number" name="price" class="price" value="{{demo.price}}">
+    <input type="number" name="seats" class="seats" placeholder="enter your seats">
+    <input type="text" name="name" placeholder="enter your name" >
+    <input type="text" name="phone" placeholder="enter your phone number">
+    <input type="text" name="adress" placeholder="enter your current adress">
+    <input type="text" name="cnic" placeholder="enter your cnic">
+    <button type="submit">confirm</button>
+    </form>
+</body>
+</html>
