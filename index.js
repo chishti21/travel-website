@@ -55,7 +55,7 @@ app.get('/registeration',(req,res)=>
 {
     res.render('registeration')
 })
-app.post('/registeration',async(req,res)=>
+app.post('/registeration',async(req,res)=
 {
   try{
     const user=await new Member1(req.body);
@@ -76,11 +76,11 @@ app.get('/all',(req,res)=>
 })
 
 // searched data
-app.get('/search',(req,res)=>
+app.get('/search',(req,res)=
 {
   res.render('search');
 })
-app.post('/search',async(req,res)=>
+app.post('/search',async(req,res)=
 {
   try{
     const place=req.body.name;
@@ -95,11 +95,11 @@ app.post('/search',async(req,res)=>
 })
 
 // filing bookin page
-app.get('/book',(req,res)=>
+app.get('/book',(req,res)=
 {
   res.render('book');
 })
-app.post('/book',async(req,res)=>
+app.post('/book',async(req,res)=
 {
   try{
     const id= req.body.id
@@ -118,15 +118,15 @@ app.post('/book',async(req,res)=>
   }
 })
 // for order
-app.get('/order',(req,res)=>
+app.get('/order',(req,res)=
 {
   res.render('book');
 })
-app.post('/order',async(req,res)=>
+app.post('/order',async(req,res)=
 {
   try{
     const booking=await new Order(req.body);
-  ///  console.log(booking);
+    //  console.log(booking);
     if(booking.seats>1)
     {
       booking.price=booking.seats*booking.price;
@@ -140,49 +140,18 @@ app.post('/order',async(req,res)=>
 })
 
 // quire page
-app.get('/quries',(req,res)=>
+app.get('/quries',(req,res)=
 {
   res.render('quries');
 })
-app.post('/quries',async(req,res)=>
+app.post('/quries',async(req,res)=
 {
   try{
-    const user_quries=await new Quries(req.body);
-   // console.log(user_quries);
-    user_quries.save();
-    res.render('message')
+    const query=await new Quries(req.body);
+    query.save();
+    res.render('message');
   }catch(error)
   {
-    console.log("quries error");
+    console.log("query error")
   }
-})
-//
-// creating destination api
-app.post('/destination',async(req,res)=>
-{
-  try{
-    const destinations=await new Destination(req.body);
-    console.log(destinations);
-    destinations.save();
-
-  }catch(error)
-  {
-    console.log("error");
-  }
-})
-
-app.get('/destination',async(req,res)=>
-{
-  try{
-    const des=await Destination.find();
-    res.send(des);
-  }catch(error)
-  {
-    console.log("error");
-  }
-})
-
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
 })
