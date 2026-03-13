@@ -7,7 +7,9 @@ const orderSchema=new mongoose.Schema({
     phone:String,
     adress:String,
     cnic:String,
-    seats:Number
+    seats:Number,
+    additionalInfo: String,
+    newField: String
 })
 const Order=new mongoose.model("Order",orderSchema);
 module.exports=Order;
